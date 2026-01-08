@@ -3,24 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Termómetro LSO">
-    <title>Termómetro LSO</title>
+    <meta name="description" content="Índice de Libertad Financiera 360º - Diagnóstico financiero con IA">
+    <title>Índice de Libertad Financiera 360º</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Termómetro LSO</h1>
-    </header>
+    <!-- Landing View -->
+    <div id="landing-view" class="view active">
+        <div class="container">
+            <div class="card landing-card">
+                <div class="logo">💰</div>
+                <h1 class="title">Índice de Libertad Financiera 360º</h1>
+                <p class="subtitle">¿Tu economía te está ahogando o estás listo para despegar?</p>
+                <p class="description">Descúbrelo en 2 minutos con nuestra IA Financiera.</p>
+                
+                <div class="promise">
+                    <p>✓ Analizamos tus deudas, ingresos y mentalidad</p>
+                    <p>✓ Hoja de ruta personalizada: Legal o De Negocio</p>
+                </div>
 
-    <main>
-        <section class="container">
-            <p>Bienvenido al proyecto Termómetro LSO</p>
-        </section>
-    </main>
+                <button class="cta-button" onclick="app.startQuiz()">INICIAR DIAGNÓSTICO GRATUITO</button>
 
-    <footer>
-        <p>&copy; 2026 Termómetro LSO</p>
-    </footer>
+                <div class="trust-badges">
+                    <span>🔒 Datos 100% confidenciales</span>
+                    <span>🤖 Análisis vía Gemini 3 AI</span>
+                    <span>✨ Sin letra pequeña</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz View -->
+    <div id="quiz-view" class="view">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        
+        <div class="container">
+            <div class="card quiz-card">
+                <div class="question-number" id="question-number"></div>
+                <h2 class="question-text" id="question-text"></h2>
+                <div class="options" id="options"></div>
+                <button class="btn-back" id="btn-back" onclick="app.previousQuestion()">← Anterior</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading View -->
+    <div id="loading-view" class="view">
+        <div class="container">
+            <div class="card loading-card">
+                <div class="loader"></div>
+                <h2>Analizando tus datos...</h2>
+                <p class="loading-message" id="loading-message">Conectando con Gemini 3...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result View -->
+    <div id="result-view" class="view">
+        <div class="container">
+            <div class="card result-card" id="result-card">
+                <div class="result-header" id="result-header"></div>
+                <div class="result-content" id="result-content"></div>
+                <button class="cta-button" id="result-cta" onclick="app.handleCTA()"></button>
+                <button class="btn-restart" onclick="app.restart()">Realizar nuevo diagnóstico</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
