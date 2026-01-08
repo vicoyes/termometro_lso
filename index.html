@@ -60,6 +60,40 @@
         </div>
     </div>
 
+    <!-- Email Gate View -->
+    <div id="gate-view" class="view">
+        <div class="container">
+            <div class="card gate-card">
+                <div class="gate-icon">✨</div>
+                <h2 class="gate-title">¡Tu análisis está listo!</h2>
+                <p class="gate-message">Hemos detectado una <strong>oportunidad clave</strong> para ti.</p>
+                <p class="gate-submessage">Ingresa tus datos para que la IA te envíe tu <strong>Informe del Termómetro Financiero</strong> y tu Plan de Acción personalizado.</p>
+                
+                <form id="lead-form" class="lead-form" onsubmit="app.submitForm(event)">
+                    <div class="form-group">
+                        <label for="nombre">Tu Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Carlos" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Tu Email *</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp (Opcional)</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+34 600 123 456">
+                        <small class="input-hint">💬 Déjalo si prefieres recibir tu diagnóstico más rápido por chat</small>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">VER MI DIAGNÓSTICO AHORA</button>
+                    
+                    <p class="privacy-note">🔒 Tus datos están protegidos. No compartimos información con terceros.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Result View -->
     <div id="result-view" class="view">
         <div class="container">

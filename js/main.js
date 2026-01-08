@@ -191,14 +191,43 @@ const app = {
             index++;
             if (index >= messages.length) {
                 clearInterval(interval);
-                setTimeout(() => this.showResults(), 500);
+                // Mostrar el gate en lugar de los resultados directamente
+                setTimeout(() => this.showGate(), 500);
             }
         }, 600);
+    },
+
+    // Mostrar pantalla de captura (The Gate)
+    showGate() {
+        this.showView('gate-view');
+    },
+
+    // Enviar formulario
+    submitForm(event) {
+        event.preventDefault();
+        
+        const formData = {
+            nombre: document.getElementById('nombre').value,
+            email: document.getElementById('email').value,
+            whatsapp: document.getElementById('whatsapp').value,
+            timestamp: new Date().toISOString(),
+            answers: this.answers
+        };
+        
+        // Guardar datos (en producción, enviar a backend/API)
+        console.log('Lead capturado:', formData);
+        localStorage.setItem('leadData', JSON.stringify(formData));
+        
+        // Mostrar resultados
+        this.showResults();
     },
 
     // Mostrar resultados
     showResults() {
         const profile = this.calculateProfile();
+        const leadData = JSON.parse(localStorage.getItem('leadData') || '{}');
+        const nombre = leadData.nombre || 'Usuario';
+        
         this.showView('result-view');
         
         const resultCard = document.getElementById('result-card');
@@ -217,7 +246,7 @@ const app = {
             resultContent.innerHTML = `
                 <div class="result-section">
                     <h3>📊 Análisis de la IA</h3>
-                    <p>He procesado tus datos financieros. Tu ratio de endeudamiento y situación de pagos indica que estás en una situación <strong>matemáticamente insostenible</strong>.</p>
+                    <p>Hola <strong>${nombre}</strong>. He procesado tus datos financieros. Tu ratio de endeudamiento y situación de pagos indica que estás en una situación <strong>matemáticamente insostenible</strong>.</p>
                     <p>Los intereses compuestos están generando un efecto bola de nieve que hace imposible salir de la deuda solo con pagos mínimos.</p>
                 </div>
 
@@ -249,7 +278,7 @@ const app = {
             resultContent.innerHTML = `
                 <div class="result-section">
                     <h3>📊 Análisis de la IA</h3>
-                    <p>Tienes control sobre tus gastos y cumples con tus obligaciones financieras. Sin embargo, tus ingresos están limitados por tu situación laboral actual.</p>
+                    <p>Hola <strong>${nombre}</strong>. Tienes control sobre tus gastos y cumples con tus obligaciones financieras. Sin embargo, tus ingresos están limitados por tu situación laboral actual.</p>
                     <p><strong>No tienes un problema de deuda, tienes un problema de techo de ingresos.</strong></p>
                 </div>
 
@@ -312,6 +341,8 @@ const app = {
     restart() {
         this.currentQuestion = 0;
         this.answers = {};
+        localStorage.removeItem('leadData');
+        document.getElementById('lead-form').reset();
         this.showView('landing-view');
     }
 };
